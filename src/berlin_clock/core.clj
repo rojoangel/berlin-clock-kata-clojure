@@ -8,4 +8,9 @@
     (apply str (concat (repeat minutes \Y) (repeat (- 4 minutes) \O)))))
 
 (defn to-berlin-five-minutes-row [time]
-  "OOOOOOOOOOO")
+  (let [minutes (-> (second (str/split time #":"))
+                    (Integer/parseInt)
+                    (rem 5))]
+    (if (= minutes 0)
+      "OOOOOOOOOOO"
+      "YYRYYRYYRYY")))
