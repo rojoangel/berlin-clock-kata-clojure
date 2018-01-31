@@ -14,4 +14,6 @@
     (testing "tell higher minute amounts more easily at a glance"
       (is (= "OOOOOOOOOOO" (clock/to-berlin-five-minutes-row "00:00:00")))
       (is (= "YYRYYRYYRYY" (clock/to-berlin-five-minutes-row "23:59:59")))
-      (is (= "OOOOOOOOOOO" (clock/to-berlin-five-minutes-row "12:04:00"))))))
+      (is (= "OOOOOOOOOOO" (clock/to-berlin-five-minutes-row "12:04:00")))
+      (is (= "YYRYOOOOOOO" (clock/to-berlin-five-minutes-row "12:23:00")))
+      (is (= "YYRYYRYOOOO" (clock/to-berlin-five-minutes-row "12:35:00"))))))

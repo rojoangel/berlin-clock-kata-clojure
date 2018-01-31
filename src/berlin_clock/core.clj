@@ -11,6 +11,4 @@
   (let [minutes (-> (second (str/split time #":"))
                     (Integer/parseInt)
                     (quot 5))]
-    (if (= minutes 0)
-      "OOOOOOOOOOO"
-      "YYRYYRYYRYY")))
+    (apply str (concat (take minutes (cycle [\Y \Y \R])) (repeat (- 11 minutes) \O)))))
