@@ -1,8 +1,11 @@
 (ns berlin-clock.core
   (:require [clojure.string :as str]))
 
+(defn- parse-int [str]
+  (Integer/parseInt str))
+
 (defn- time->components [time]
-  (map #(Integer/parseInt %) (str/split time #":")))
+  (map parse-int (str/split time #":")))
 
 (defn to-berlin-single-minutes-row [time]
   (let [single-minutes (-> time
