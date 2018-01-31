@@ -6,3 +6,6 @@
                     (Integer/parseInt)
                     (mod 5))]
     (apply str (concat (repeat minutes \Y) (repeat (- 4 minutes) \O)))))
+
+(defn to-berlin-five-minutes-row [time]
+  "OOOOOOOOOOO")
