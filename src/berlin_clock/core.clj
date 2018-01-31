@@ -5,35 +5,35 @@
   (let [value (time-conversion-f time)]
     (apply str (concat (take value (cycle on-pattern)) (repeat (- row-length value) fill-lamp)))))
 
-(defn to-berlin-single-minutes-row [time]
+(defn single-minutes-row [time]
   (row time
        :row-length 4
        :on-pattern [\Y]
        :fill-lamp \O
        :time-conversion-f time/to-single-minutes))
 
-(defn to-berlin-five-minutes-row [time]
+(defn five-minutes-row [time]
   (row time
        :row-length 11
        :on-pattern [\Y \Y \R]
        :fill-lamp \O
        :time-conversion-f time/to-five-minutes))
 
-(defn to-berlin-single-hours-row [time]
+(defn single-hours-row [time]
   (row time
        :row-length 4
        :on-pattern [\R]
        :fill-lamp \O
        :time-conversion-f time/to-single-hours))
 
-(defn to-berlin-five-hours-row [time]
+(defn five-hours-row [time]
   (row time
        :row-length 4
        :on-pattern [\R]
        :fill-lamp \O
        :time-conversion-f time/to-five-hours))
 
-(defn to-berlin-seconds-lamp [time]
+(defn seconds-lamp [time]
   (row time
        :row-length 1
        :on-pattern [\O]
