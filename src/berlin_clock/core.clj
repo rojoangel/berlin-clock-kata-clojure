@@ -5,6 +5,4 @@
   (let [minutes (-> (second (str/split time #":"))
                     (Integer/parseInt)
                     (mod 5))]
-    (if (> minutes 0)
-      (apply str (repeat minutes "Y"))
-      "OOOO")))
+    (apply str (concat (repeat minutes \Y) (repeat (- 4 minutes) \O)))))
