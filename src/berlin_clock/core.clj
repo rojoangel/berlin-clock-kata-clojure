@@ -10,7 +10,7 @@
 (defn to-berlin-five-minutes-row [time]
   (let [minutes (-> (second (str/split time #":"))
                     (Integer/parseInt)
-                    (rem 5))]
+                    (quot 5))]
     (if (= minutes 0)
       "OOOOOOOOOOO"
       "YYRYYRYYRYY")))
