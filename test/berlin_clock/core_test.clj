@@ -16,4 +16,11 @@
       (is (= "YYRYYRYYRYY" (clock/to-berlin-five-minutes-row "23:59:59")))
       (is (= "OOOOOOOOOOO" (clock/to-berlin-five-minutes-row "12:04:00")))
       (is (= "YYRYOOOOOOO" (clock/to-berlin-five-minutes-row "12:23:00")))
-      (is (= "YYRYYRYOOOO" (clock/to-berlin-five-minutes-row "12:35:00"))))))
+      (is (= "YYRYYRYOOOO" (clock/to-berlin-five-minutes-row "12:35:00")))))
+  (testing "The single hours row should"
+    (testing "tell what hour it is"
+      (is (= "OOOO" (clock/to-berlin-single-hours-row "00:00:00")))
+      (is (= "RRRO" (clock/to-berlin-single-hours-row "23:59:59")))
+      (is (= "RROO" (clock/to-berlin-single-hours-row "02:04:00")))
+      (is (= "RRRO" (clock/to-berlin-single-hours-row "08:23:00")))
+      (is (= "RRRR" (clock/to-berlin-single-hours-row "14:35:00"))))))
