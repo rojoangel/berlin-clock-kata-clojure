@@ -7,17 +7,23 @@
 (defn- time->components [time]
   (map parse-int (str/split time #":")))
 
+(defn- get-time-element [time f]
+  (-> time
+      (time->components)
+      (f)))
+
+(defn- minutes [time]
+  (get-time-element time second))
+
 (defn to-berlin-single-minutes-row [time]
   (let [single-minutes (-> time
-                           (time->components)
-                           (second)
+                           (minutes)
                            (mod 5))]
     (apply str (concat (take single-minutes (cycle [\Y])) (repeat (- 4 single-minutes) \O)))))
 
 (defn to-berlin-five-minutes-row [time]
   (let [five-minutes (-> time
-                         (time->components)
-                         (second)
+                         (minutes)
                          (quot 5))]
     (apply str (concat (take five-minutes (cycle [\Y \Y \R])) (repeat (- 11 five-minutes) \O)))))
 
