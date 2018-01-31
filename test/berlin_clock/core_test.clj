@@ -23,4 +23,11 @@
       (is (= "RRRO" (clock/to-berlin-single-hours-row "23:59:59")))
       (is (= "RROO" (clock/to-berlin-single-hours-row "02:04:00")))
       (is (= "RRRO" (clock/to-berlin-single-hours-row "08:23:00")))
-      (is (= "RRRR" (clock/to-berlin-single-hours-row "14:35:00"))))))
+      (is (= "RRRR" (clock/to-berlin-single-hours-row "14:35:00")))))
+  (testing "The five hours row should"
+    (testing "tell higher hour amounts more easily at a glance"
+      (is (= "OOOO" (clock/to-berlin-five-hours-row "00:00:00")))
+      (is (= "RRRR" (clock/to-berlin-five-hours-row "23:59:59")))
+      (is (= "OOOO" (clock/to-berlin-five-hours-row "02:04:00")))
+      (is (= "ROOO" (clock/to-berlin-five-hours-row "08:23:00")))
+      (is (= "RRRO" (clock/to-berlin-five-hours-row "16:35:00"))))))

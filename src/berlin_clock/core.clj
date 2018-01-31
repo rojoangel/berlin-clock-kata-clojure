@@ -18,3 +18,9 @@
                          (Integer/parseInt)
                          (mod 5))]
     (apply str (concat (take single-hours (cycle [\R])) (repeat (- 4 single-hours) \O)))))
+
+(defn to-berlin-five-hours-row [time]
+  (let [five-hours (-> (first (str/split time #":"))
+                       (Integer/parseInt)
+                       (quot 5))]
+    (apply str (concat (take five-hours (cycle [\R])) (repeat (- 4 five-hours) \O)))))
