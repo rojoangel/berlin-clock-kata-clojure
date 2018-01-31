@@ -1,10 +1,13 @@
 (ns berlin-clock.core
   (:require [berlin-clock.time :as time]))
 
+(defn to-single-minutes [time]
+  (-> time
+      (time/minutes)
+      (mod 5)))
+
 (defn to-berlin-single-minutes-row [time]
-  (let [single-minutes (-> time
-                           (time/minutes)
-                           (mod 5))]
+  (let [single-minutes (to-single-minutes time)]
     (apply str (concat (take single-minutes (cycle [\Y])) (repeat (- 4 single-minutes) \O)))))
 
 (defn to-berlin-five-minutes-row [time]
