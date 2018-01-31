@@ -13,17 +13,29 @@
        :time-conversion-f time/to-single-minutes))
 
 (defn to-berlin-five-minutes-row [time]
-  (let [five-minutes (time/to-five-minutes time)]
-    (apply str (concat (take five-minutes (cycle [\Y \Y \R])) (repeat (- 11 five-minutes) \O)))))
+  (row time
+       :row-length 11
+       :on-pattern [\Y \Y \R]
+       :fill-lamp \O
+       :time-conversion-f time/to-five-minutes))
 
 (defn to-berlin-single-hours-row [time]
-  (let [single-hours (time/to-single-hours time)]
-    (apply str (concat (take single-hours (cycle [\R])) (repeat (- 4 single-hours) \O)))))
+  (row time
+       :row-length 4
+       :on-pattern [\R]
+       :fill-lamp \O
+       :time-conversion-f time/to-single-hours))
 
 (defn to-berlin-five-hours-row [time]
-  (let [five-hours (time/to-five-hours time)]
-    (apply str (concat (take five-hours (cycle [\R])) (repeat (- 4 five-hours) \O)))))
+  (row time
+       :row-length 4
+       :on-pattern [\R]
+       :fill-lamp \O
+       :time-conversion-f time/to-five-hours))
 
 (defn to-berlin-seconds-lamp [time]
-  (let [seconds (time/to-seconds time)]
-    (apply str (concat (take seconds (cycle [\O])) (repeat (- 1 seconds) \Y)))))
+  (row time
+       :row-length 1
+       :on-pattern [\O]
+       :fill-lamp \Y
+       :time-conversion-f time/to-seconds))
