@@ -24,3 +24,11 @@
                        (Integer/parseInt)
                        (quot 5))]
     (apply str (concat (take five-hours (cycle [\R])) (repeat (- 4 five-hours) \O)))))
+
+(defn to-berlin-seconds-lamp [time]
+  (let [seconds (-> (last (str/split time #":"))
+                    (Integer/parseInt)
+                    (mod 2))]
+    (if (zero? seconds)
+      "Y"
+      "O")))

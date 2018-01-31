@@ -30,4 +30,8 @@
       (is (= "RRRR" (clock/to-berlin-five-hours-row "23:59:59")))
       (is (= "OOOO" (clock/to-berlin-five-hours-row "02:04:00")))
       (is (= "ROOO" (clock/to-berlin-five-hours-row "08:23:00")))
-      (is (= "RRRO" (clock/to-berlin-five-hours-row "16:35:00"))))))
+      (is (= "RRRO" (clock/to-berlin-five-hours-row "16:35:00")))))
+  (testing "The seconds lamp should"
+    (testing "show the seconds passing"
+      (is (= "Y" (clock/to-berlin-seconds-lamp "00:00:00")))
+      (is (= "O" (clock/to-berlin-seconds-lamp "23:59:59"))))))
