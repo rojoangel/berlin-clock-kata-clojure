@@ -4,22 +4,22 @@
 (defn- parse-int [str]
   (Integer/parseInt str))
 
-(defn- time->components [time]
+(defn- to-elements [time]
   (map parse-int (str/split time #":")))
 
 (defn- minutes [time]
   (->> time
-       (time->components)
+       (to-elements)
        (second)))
 
 (defn- hours [time]
   (->> time
-       (time->components)
+       (to-elements)
        (first)))
 
 (defn- seconds [time]
   (->> time
-       (time->components)
+       (to-elements)
        (last)))
 
 (defn to-berlin-single-minutes-row [time]
