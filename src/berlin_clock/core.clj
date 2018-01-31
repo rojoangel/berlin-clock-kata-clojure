@@ -29,6 +29,4 @@
   (let [seconds (-> (last (str/split time #":"))
                     (Integer/parseInt)
                     (mod 2))]
-    (if (zero? seconds)
-      "Y"
-      "O")))
+    (apply str (concat (take seconds (cycle [\O])) (repeat (- 1 seconds) \Y)))))
