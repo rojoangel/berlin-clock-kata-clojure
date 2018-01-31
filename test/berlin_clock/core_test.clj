@@ -34,4 +34,10 @@
   (testing "The seconds lamp should"
     (testing "show the seconds passing"
       (is (= "Y" (berlin-clock/seconds-lamp "00:00:00")))
-      (is (= "O" (berlin-clock/seconds-lamp "23:59:59"))))))
+      (is (= "O" (berlin-clock/seconds-lamp "23:59:59")))))
+  (testing "The entire clock should"
+    (testing "tell what time it is at a glance"
+      (is (= "YOOOOOOOOOOOOOOOOOOOOOOO" (berlin-clock/time "00:00:00")))
+      (is (= "ORRRRRRROYYRYYRYYRYYYYYY" (berlin-clock/time "23:59:59")))
+      (is (= "YRRROROOOYYRYYRYYRYOOOOO" (berlin-clock/time "16:50:06")))
+      (is (= "ORROOROOOYYRYYRYOOOOYYOO" (berlin-clock/time "11:37:01"))))))
