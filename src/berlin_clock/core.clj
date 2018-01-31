@@ -1,13 +1,16 @@
 (ns berlin-clock.core
   (:require [berlin-clock.time :as time]))
 
+(defn- row [row-length
+            on-pattern
+            fill-lamp
+            time-conversion-f
+            time]
+  (let [value (time-conversion-f time)]
+    (apply str (concat (take value (cycle on-pattern)) (repeat (- row-length value) fill-lamp)))))
+
 (defn to-berlin-single-minutes-row [time]
-  (let [time-conversion-f time/to-single-minutes
-        on-pattern [\Y]
-        fill-lamp \O
-        row-length 4
-        single-minutes (time-conversion-f time)]
-    (apply str (concat (take single-minutes (cycle on-pattern)) (repeat (- row-length single-minutes) fill-lamp)))))
+  (row 4 [\Y] \O time/to-single-minutes time))
 
 (defn to-berlin-five-minutes-row [time]
   (let [five-minutes (time/to-five-minutes time)]
