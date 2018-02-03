@@ -46,12 +46,14 @@
   (parse-seconds-lamp time))
 
 (defn minutes [time]
-  (+ (parse-five-minutes-row time)
-     (parse-single-minutes-row time)))
+  (->> time
+       ((juxt parse-five-minutes-row parse-single-minutes-row))
+       (apply +)))
 
 (defn hours [time]
-  (+ (parse-five-hours-row time)
-     (parse-single-hours-row time)))
+  (->> time
+       ((juxt parse-five-hours-row parse-single-hours-row))
+       (apply +)))
 
 (defn convert [time]
   (->> time
