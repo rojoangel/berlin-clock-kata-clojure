@@ -40,7 +40,7 @@
        :fill-lamp \Y
        :time-conversion-f time/to-seconds))
 
-(defn time [time]
+(defn to-berlin-time [time]
   (->> time
        ((juxt seconds-lamp five-hours-row single-hours-row five-minutes-row single-minutes-row))
        (apply str)))
