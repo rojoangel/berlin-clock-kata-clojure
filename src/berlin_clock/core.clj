@@ -49,8 +49,8 @@
 (defn digital-seconds [time]
   (let [seconds-lamp (first time)]
     (if (= \Y seconds-lamp)
-      "00"
-      "01")))
+      0
+      1)))
 
 (defn digital-minutes [time]
   (let [single-minutes-row (take-last 4 time)
@@ -65,4 +65,4 @@
        (apply + (map #(if (= \O %) 0 5) five-hours-row)))))
 
 (defn to-digital-time [time]
-  (str/join ":" [(digital-hours time) (digital-minutes time) (digital-seconds time)]))
+  (str/join ":" (map #(format "%02d" %) ((juxt  digital-hours digital-minutes digital-seconds) time))))

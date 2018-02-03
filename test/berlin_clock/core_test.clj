@@ -53,4 +53,9 @@
       (is (= 59 (time/minutes (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))))
     (testing "Digital Hours"
       (is (= 0 (time/hours (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO"))))
-      (is (= 23 (time/hours (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))))))
+      (is (= 23 (time/hours (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))))
+    (testing "Formatting"
+      (is (= "00:00:00" (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO")))
+      (is (= "23:59:01" (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))
+      (is (= "16:50:00" (berlin-clock/to-digital-time "YRRROROOOYYRYYRYYRYOOOOO")))
+      (is (= "11:37:01" (berlin-clock/to-digital-time "ORROOROOOYYRYYRYOOOOYYOO"))))))
