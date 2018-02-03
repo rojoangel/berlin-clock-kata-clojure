@@ -8,8 +8,8 @@
       1)))
 
 (defn minutes [time]
-  (let [single-minutes-row (take-last 4 time)
-        five-minutes-row (take-last 11 (drop-last 4 time))]
+  (let [single-minutes-row (subs time 20 24)
+        five-minutes-row (subs time 9 20)]
     (+ (apply + (map #(if (= \O %) 0 1) single-minutes-row))
        (apply + (map #(if (= \O %) 0 5) five-minutes-row)))))
 
