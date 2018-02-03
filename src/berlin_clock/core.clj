@@ -1,5 +1,6 @@
 (ns berlin-clock.core
-  (:require [berlin-clock.time :as time]))
+  (:require [berlin-clock.time :as time]
+            [clojure.string :as str]))
 
 (defn- row [time & {:keys [row-length on-pattern fill-lamp time-conversion-f]}]
   (let [value (time-conversion-f time)]
@@ -46,4 +47,7 @@
        (apply str)))
 
 (defn to-digital-time [time]
-  "00:00:00")
+  (let [seconds "00"
+        minutes "00"
+        hours "00"]
+    (str/join ":" [hours minutes seconds])))
