@@ -17,7 +17,7 @@
        (to-elements)
        (first)))
 
-(defn- seconds [time]
+(defn seconds [time]
   (->> time
        (to-elements)
        (last)))

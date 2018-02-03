@@ -1,6 +1,7 @@
 (ns berlin-clock.core-test
   (:require [clojure.test :refer :all]
-            [berlin-clock.core :as berlin-clock]))
+            [berlin-clock.core :as berlin-clock]
+            [berlin-clock.time :as time]))
 
 (deftest converting-digital-to-berlin-time
   (testing "The single minutes row should"
@@ -43,5 +44,6 @@
       (is (= "ORROOROOOYYRYYRYOOOOYYOO" (berlin-clock/to-berlin-time "11:37:01"))))))
 
 (testing "converting-berlin-to-digital-time"
-  (testing "Converting Berlin Time to Digital should can tell what time it is more easily"
-    (is (= "00:00:00" (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO")))))
+  (testing "Converting Berlin Time to Digital should tell what time it is more easily"
+    (testing "Digital Seconds"
+      (is (= 0 (time/seconds (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO")))))))

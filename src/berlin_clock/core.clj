@@ -47,4 +47,3 @@
 
 (defn to-digital-time [time]
   "00:00:00")
-
