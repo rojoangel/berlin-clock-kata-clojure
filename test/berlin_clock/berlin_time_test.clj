@@ -37,7 +37,7 @@
       (is (= "O" (berlin-time/seconds-lamp "23:59:59")))))
   (testing "The entire clock should"
     (testing "tell what time it is at a glance"
-      (is (= "YOOOOOOOOOOOOOOOOOOOOOOO" (berlin-time/to-berlin-time "00:00:00")))
-      (is (= "ORRRRRRROYYRYYRYYRYYYYYY" (berlin-time/to-berlin-time "23:59:59")))
-      (is (= "YRRROROOOYYRYYRYYRYOOOOO" (berlin-time/to-berlin-time "16:50:06")))
-      (is (= "ORROOROOOYYRYYRYOOOOYYOO" (berlin-time/to-berlin-time "11:37:01"))))))
+      (is (= "YOOOOOOOOOOOOOOOOOOOOOOO" (berlin-time/convert "00:00:00")))
+      (is (= "ORRRRRRROYYRYYRYYRYYYYYY" (berlin-time/convert "23:59:59")))
+      (is (= "YRRROROOOYYRYYRYYRYOOOOO" (berlin-time/convert "16:50:06")))
+      (is (= "ORROOROOOYYRYYRYOOOOYYOO" (berlin-time/convert "11:37:01"))))))
