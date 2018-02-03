@@ -4,17 +4,39 @@
 (defn- on? [lamp]
   (not= \O lamp))
 
+(defn- parse-lamp-row [time & {:keys [start end lamp-on-fn lamp-value]}]
+  (apply + (map #(if (lamp-on-fn %) lamp-value 0) (subs time start end))))
+
 (defn seconds [time]
-  (+ (apply + (map #(if (not (on? %)) 5 0) (subs time 0 0)))
-     (apply + (map #(if (not (on? %)) 1 0) (subs time 0 1)))))
+  (parse-lamp-row time
+                  :start 0
+                  :end 1
+                  :lamp-on-fn (complement on?)
+                  :lamp-value 1))
 
 (defn minutes [time]
-  (+ (apply + (map #(if (on? %) 5 0) (subs time 9 20)))
-     (apply + (map #(if (on? %) 1 0) (subs time 20 24)))))
+  (+ (parse-lamp-row time
+                     :start 9
+                     :end 20
+                     :lamp-on-fn on?
+                     :lamp-value 5)
+     (parse-lamp-row time
+                     :start 20
+                     :end 24
+                     :lamp-on-fn on?
+                     :lamp-value 1)))
 
 (defn hours [time]
-  (+ (apply + (map #(if (on? %) 5 0) (subs time 2 6)))
-     (apply + (map #(if (on? %) 1 0) (subs time 6 10)))))
+  (+ (parse-lamp-row time
+                     :start 2
+                     :end 6
+                     :lamp-on-fn on?
+                     :lamp-value 5)
+     (parse-lamp-row time
+                     :start 6
+                     :end 10
+                     :lamp-on-fn on?
+                     :lamp-value 1)))
 
 (defn convert [time]
   (str/join ":" (map #(format "%02d" %) ((juxt hours minutes seconds) time))))
