@@ -47,4 +47,7 @@
   (testing "Converting Berlin Time to Digital should tell what time it is more easily"
     (testing "Digital Seconds - note that can only distinguish between even and odd"
       (is (= 0 (time/seconds (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO"))))
-      (is (= 1 (time/seconds (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))))))
+      (is (= 1 (time/seconds (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))))
+    (testing "Digital Minutes"
+      (is (= 0 (time/minutes (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO"))))
+      (is (= 59 (time/minutes (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))))))

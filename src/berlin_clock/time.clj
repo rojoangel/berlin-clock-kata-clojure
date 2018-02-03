@@ -7,7 +7,7 @@
 (defn- to-elements [time]
   (map parse-int (str/split time #":")))
 
-(defn- minutes [time]
+(defn minutes [time]
   (->> time
        (to-elements)
        (second)))

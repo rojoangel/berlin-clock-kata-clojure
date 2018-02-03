@@ -52,7 +52,12 @@
       "00"
       "01")))
 
+(defn digital-minutes [time]
+  (let [single-minutes-row (take-last 4 time)
+        five-minutes-row (take-last 11 (drop-last 4 time))]
+    (+ (apply + (map #(if (= \O %) 0 1) single-minutes-row))
+       (apply + (map #(if (= \O %) 0 5) five-minutes-row)))))
+
 (defn to-digital-time [time]
-  (let [minutes "00"
-        hours "00"]
-    (str/join ":" [hours minutes (digital-seconds time)])))
+  (let [hours "00"]
+    (str/join ":" [hours (digital-minutes time) (digital-seconds time)])))
