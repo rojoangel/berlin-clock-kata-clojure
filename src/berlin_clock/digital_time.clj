@@ -39,4 +39,7 @@
                      :lamp-value 1)))
 
 (defn convert [time]
-  (str/join ":" (map #(format "%02d" %) ((juxt hours minutes seconds) time))))
+  (->> time
+       ((juxt hours minutes seconds))
+       (map #(format "%02d" %))
+       (str/join ":")))
