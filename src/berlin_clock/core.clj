@@ -45,3 +45,6 @@
        ((juxt seconds-lamp five-hours-row single-hours-row five-minutes-row single-minutes-row))
        (apply str)))
 
+(defn to-digital-time [time]
+  "00:00:00")
+
