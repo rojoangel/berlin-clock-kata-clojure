@@ -46,8 +46,13 @@
        ((juxt seconds-lamp five-hours-row single-hours-row five-minutes-row single-minutes-row))
        (apply str)))
 
+(defn digital-seconds [time]
+  (let [seconds-lamp (first time)]
+    (if (= \Y seconds-lamp)
+      "00"
+      "01")))
+
 (defn to-digital-time [time]
-  (let [seconds "00"
-        minutes "00"
+  (let [minutes "00"
         hours "00"]
-    (str/join ":" [hours minutes seconds])))
+    (str/join ":" [hours minutes (digital-seconds time)])))

@@ -43,7 +43,8 @@
       (is (= "YRRROROOOYYRYYRYYRYOOOOO" (berlin-clock/to-berlin-time "16:50:06")))
       (is (= "ORROOROOOYYRYYRYOOOOYYOO" (berlin-clock/to-berlin-time "11:37:01"))))))
 
-(testing "converting-berlin-to-digital-time"
+(deftest converting-berlin-to-digital-time
   (testing "Converting Berlin Time to Digital should tell what time it is more easily"
-    (testing "Digital Seconds"
-      (is (= 0 (time/seconds (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO")))))))
+    (testing "Digital Seconds - note that can only distinguish between even and odd"
+      (is (= 0 (time/seconds (berlin-clock/to-digital-time "YOOOOOOOOOOOOOOOOOOOOOOO"))))
+      (is (= 1 (time/seconds (berlin-clock/to-digital-time "ORRRRRRROYYRYYRYYRYYYYYY")))))))
