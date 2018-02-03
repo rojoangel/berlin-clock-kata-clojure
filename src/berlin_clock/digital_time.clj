@@ -2,10 +2,10 @@
   (:require [clojure.string :as str]))
 
 (defn seconds [time]
-  (let [seconds-lamp (first time)]
-    (if (= \Y seconds-lamp)
-      0
-      1)))
+  (let [single-seconds-row (subs time 0 1)
+        five-seconds-row (subs time 0 0)]
+    (+ (apply + (map #(if (= \Y %) 0 1) single-seconds-row))
+       (apply + (map #(if (= \Y %) 0 5) five-seconds-row)))))
 
 (defn minutes [time]
   (let [single-minutes-row (subs time 20 24)
