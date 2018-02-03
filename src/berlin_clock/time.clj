@@ -12,7 +12,7 @@
        (to-elements)
        (second)))
 
-(defn- hours [time]
+(defn hours [time]
   (->> time
        (to-elements)
        (first)))

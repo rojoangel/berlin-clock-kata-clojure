@@ -58,6 +58,11 @@
     (+ (apply + (map #(if (= \O %) 0 1) single-minutes-row))
        (apply + (map #(if (= \O %) 0 5) five-minutes-row)))))
 
+(defn digital-hours [time]
+  (let [single-hours-row (subs time 6 10)
+        five-hours-row (subs time 2 6)]
+    (+ (apply + (map #(if (= \O %) 0 1) single-hours-row))
+       (apply + (map #(if (= \O %) 0 5) five-hours-row)))))
+
 (defn to-digital-time [time]
-  (let [hours "00"]
-    (str/join ":" [hours (digital-minutes time) (digital-seconds time)])))
+  (str/join ":" [(digital-hours time) (digital-minutes time) (digital-seconds time)]))
