@@ -19,5 +19,5 @@
     (+ (apply + (map #(if (= \O %) 0 1) single-hours-row))
        (apply + (map #(if (= \O %) 0 5) five-hours-row)))))
 
-(defn to-digital-time [time]
+(defn convert [time]
   (str/join ":" (map #(format "%02d" %) ((juxt digital-hours digital-minutes digital-seconds) time))))
